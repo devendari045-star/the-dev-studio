@@ -4,26 +4,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070A16">
-  <meta name="description" content="THE_DEV creates premium websites and digital experiences for businesses, brands and professionals.">
+  <meta name="theme-color" content="#070a16">
+  <meta name="description" content="THE_DEV — Premium websites and digital experiences crafted for ambitious brands and businesses.">
   <title>THE_DEV | Digital Experience Studio</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
+  <style>
+    /* THE_DEV SIGNATURE IDENTITY */
+    .brand { gap: 10px !important; }
+    .brand-mark {
+      position: relative;
+      width: 48px !important;
+      height: 48px !important;
+      border-radius: 15px !important;
+      overflow: hidden;
+      border: 1px solid rgba(90,235,255,.65) !important;
+      background: linear-gradient(145deg,#172c50,#101326 65%,#351a52);
+      box-shadow: 0 0 18px #38dfff35, inset 0 0 16px #8c5bff30;
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+    .brand-mark svg { width: 39px; height: 39px; }
+    .brand-name {
+      font-size: 16px !important;
+      letter-spacing: 1.5px !important;
+      text-shadow: 0 0 15px #57dfff35;
+    }
+    .brand-name span { color: #65eaff !important; }
+    .brand-name small { letter-spacing: 2.4px !important; }
+
+    .side-label { font-size: 9px; }
+    .side-label::first-letter { color: #62eaff; }
+
+    .top-cta {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent !important;
+      background:
+        linear-gradient(#0b1224,#0b1224) padding-box,
+        linear-gradient(110deg,#38eaff,#8d6bff,#ff65cf,#38eaff) border-box;
+      background-size: 100% 100%,300% 100%;
+      animation: talkGlow 5s linear infinite;
+      box-shadow: 0 0 18px #47dcff20;
+      transition: .3s;
+    }
+    .top-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 28px #47dcff55;
+    }
+
+    .hero-visual { perspective: 900px; }
+    .planet {
+      position: relative;
+      isolation: isolate;
+      width: 170px !important;
+      height: 170px !important;
+      border: 1px solid #9beaff99;
+      background:
+        radial-gradient(circle at 35% 25%,#b7f8ff 0%,#36bde9 12%,#4644a6 43%,#17132e 75%);
+      box-shadow: 0 0 35px #39d9ff75, 0 0 90px #755bff40,
+        inset -20px -25px 35px #050716aa;
+      animation: avatarFloat 5s ease-in-out infinite;
+    }
+    .planet::before {
+      content: "";
+      position: absolute;
+      inset: -13px;
+      border: 1px solid #8cecff70;
+      border-radius: 50%;
+      box-shadow: 0 0 22px #55eaff40;
+      animation: avatarRing 8s linear infinite;
+    }
+    .planet::after {
+      content: "THE\\A DEV";
+      white-space: pre;
+      text-align: center;
+      font-family: Orbitron,sans-serif;
+      font-weight: 800;
+      font-size: 25px;
+      letter-spacing: 2px;
+      line-height: 1.25;
+      color: white;
+      text-shadow: 0 0 12px #54eaff,0 0 25px #a46cff;
+    }
+    .hero-visual .orbit { filter: drop-shadow(0 0 7px #52eaff70); }
+
+    /* SINGLE SECTION NAVIGATION */
+    .main-content > section.section { display: none !important; }
+    .main-content > section.section.is-active { display: block !important; }
+    .main-content > section.hero.is-active { display: flex !important; }
+    .main-content > section.is-active { animation: sectionReveal .55s ease both; }
+    .main-content > section.is-active .section-heading,
+    .main-content > section.is-active .hero-content {
+      animation: contentReveal .65s ease both;
+    }
+    .navigation .nav-link { transition: .25s ease; }
+    .navigation .nav-link.active {
+      color: #65eaff !important;
+      border-color: #4bdfff40 !important;
+      background: linear-gradient(100deg,#36dfff18,#9b6bff15) !important;
+      box-shadow: inset 3px 0 #55eaff,0 0 18px #45dfff12;
+    }
+
+    /* REAL PORTFOLIO LINKS */
+    .portfolio-card {
+      overflow: hidden;
+      transition: transform .35s ease, border-color .35s ease;
+    }
+    .portfolio-card:hover { transform: translateY(-8px); }
+    .portfolio-card > a { display: block; height: 100%; }
+    .portfolio-card .portfolio-art {
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Orbitron,sans-serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      text-align: center;
+      text-shadow: 0 0 18px currentColor;
+    }
+    .portfolio-art small {
+      display: block;
+      margin-top: 13px;
+      font: 9px Inter,sans-serif;
+      letter-spacing: 2px;
+    }
+    .art-one { background: radial-gradient(circle at 50% 30%,#254e83,#10142b 65%); }
+    .art-two { background: radial-gradient(circle at 50% 30%,#593c87,#11152b 65%); }
+    .art-three { background: radial-gradient(circle at 50% 30%,#176b70,#10172b 65%); }
+    .portfolio-info { padding: 17px; }
+    .portfolio-info h3 { margin-bottom: 8px; }
+    .portfolio-info span { font-size: 9px; letter-spacing: 1.5px; color: #8e9db9; }
+    .portfolio-open {
+      display: inline-block;
+      margin-top: 13px;
+      color: #65eaff;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    /* SMALL DESKTOP-ONLY COLOR CURSOR */
+    @media (hover:hover) and (pointer:fine) and (min-width:900px) {
+      body, a, button, input, select, textarea { cursor: none !important; }
+      .cursor-glow {
+        width: 95px !important;
+        height: 95px !important;
+        z-index: 9999 !important;
+        background: radial-gradient(circle,#48eaff38 0%,#9366ff20 38%,transparent 72%) !important;
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+      .custom-cursor {
+        position: fixed;
+        left: 0; top: 0;
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: #a8f7ff;
+        box-shadow: 0 0 8px #4ceaff,0 0 18px #a46cff;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%,-50%);
+      }
+      .cursor-trail {
+        position: fixed;
+        width: 4px; height: 4px;
+        border-radius: 50%;
+        background: #72eaff;
+        box-shadow: 0 0 9px #55eaff;
+        pointer-events: none;
+        z-index: 9998;
+        animation: trailFade .55s ease-out forwards;
+      }
+    }
+    @media (max-width:899px), (pointer:coarse) {
+      .cursor-glow, .custom-cursor, .cursor-trail { display:none !important; }
+      body, a, button, input, select, textarea { cursor:auto !important; }
+    }
+
+    @keyframes logoPulse {
+      0%,100% { box-shadow:0 0 15px #38dfff30,inset 0 0 12px #8c5bff20; }
+      50% { box-shadow:0 0 27px #38dfff70,inset 0 0 20px #8c5bff45; }
+    }
+    @keyframes talkGlow { to { background-position:0 0,300% 0; } }
+    @keyframes avatarFloat { 0%,100% { transform:translateY(0) rotateY(-8deg); } 50% { transform:translateY(-13px) rotateY(8deg); } }
+    @keyframes avatarRing { to { transform:rotate(360deg); } }
+    @keyframes sectionReveal { from { opacity:0; } to { opacity:1; } }
+    @keyframes contentReveal { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes trailFade { from { opacity:.8; transform:scale(1); } to { opacity:0; transform:scale(.15); } }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+
+<body>
   <div id="background-effects"></div>
   <div class="cursor-glow"></div>
 
   <aside class="sidebar">
-    <a href="#home" class="brand">
-      <div class="brand-mark">T<span>D</span></div>
-      <div class="brand-name">THE_<span>DEV</span>
-        <small>DIGITAL STUDIO</small>
+    <a href="#home" class="brand" aria-label="THE_DEV Home">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M8 21 13 10 24 5 35 10 40 21 35 36 24 43 13 36 8 21Z" stroke="#8CEEFF" stroke-width="1.4"/>
+          <path d="M13 20 18 13 24 11 30 13 35 20 31 30 24 35 17 30 13 20Z" fill="#172A50" stroke="#69E8FF" stroke-width="1.2"/>
+          <path d="M16 22 21 19 24 22 27 19 32 22 29 28 24 31 19 28 16 22Z" fill="#8CEEFF"/>
+          <path d="M20 24h2m4 0h2" stroke="#10172B" stroke-width="2" stroke-linecap="round"/>
+          <path d="M19 33 24 37 29 33" stroke="#B58CFF" stroke-width="1.5"/>
+        </svg>
       </div>
+      <div class="brand-name">THE_<span>DEV</span><small>DIGITAL EXPERIENCE STUDIO</small></div>
     </a>
 
-    <div class="side-label">MAIN MENU</div>
-    <nav class="navigation">
+    <div class="side-label">MAIN SECTION</div>
+    <nav class="navigation" aria-label="Main sections">
       <a href="#home" class="nav-link active">⌂ <span>Home</span></a>
       <a href="#services" class="nav-link">◇ <span>Our Services</span></a>
       <a href="#industries" class="nav-link">▦ <span>Industries</span></a>
@@ -46,15 +240,13 @@
   <main class="main-content">
     <header class="topbar">
       <span class="top-label">DIGITAL EXPERIENCES / INDIA</span>
-      <a href="#contact" class="top-cta">LET'S TALK ↗</a>
+      <a href="#contact" class="top-cta">LET'S TALK <span>↗</span></a>
     </header>
 
-    <section id="home" class="hero section">
+    <section id="home" class="hero section is-active">
       <div class="hero-content">
         <div class="eyebrow"><span></span> INDEPENDENT DIGITAL STUDIO</div>
-        <h1>We Build<br>
-          <span class="gradient-text">Digital Worlds.</span>
-        </h1>
+        <h1>We Build<br><span class="gradient-text">Digital Worlds.</span></h1>
         <p class="hero-description">
           We transform your ideas into powerful digital experiences.
           Premium websites crafted for businesses, brands and ambitious people.
@@ -72,12 +264,12 @@
       <div class="hero-visual">
         <div class="orbit orbit-one"></div>
         <div class="orbit orbit-two"></div>
-        <div class="planet">TD</div>
+        <div class="planet" aria-label="THE DEV digital avatar"></div>
         <div class="floating-tag tag-one">✦ CREATIVE DESIGN</div>
         <div class="floating-tag tag-two">◈ DIGITAL FUTURE</div>
         <div class="visual-caption">DESIGNED BEYOND LIMITS</div>
       </div>
-      <div class="scroll-note">SCROLL TO EXPLORE ↓</div>
+      <div class="scroll-note">SELECT A SECTION TO EXPLORE ↓</div>
     </section>
 
     <section id="services" class="section content-section">
@@ -116,16 +308,31 @@
 
     <section id="portfolio" class="section content-section">
       <div class="section-heading">
-        <span class="eyebrow">03 / SELECTED CONCEPTS</span>
+        <span class="eyebrow">03 / SELECTED DIGITAL PROJECTS</span>
         <h2>Our <span class="gradient-text">Portfolio.</span></h2>
-        <p>Explore the kind of digital experiences we can create.</p>
+        <p>Explore these websites and experience different digital styles.</p>
       </div>
       <div class="portfolio-grid">
-        <article class="portfolio-card"><div class="portfolio-art art-one">NEX<span>ORA</span><small>BUSINESS EXPERIENCE</small></div><div class="portfolio-info"><h3>Corporate Website Concept</h3><span>BUSINESS / CORPORATE</span></div></article>
-        <article class="portfolio-card"><div class="portfolio-art art-two">INDUSTR<span>IA</span><small>ENGINEERING THE FUTURE</small></div><div class="portfolio-info"><h3>Industrial Website Concept</h3><span>MANUFACTURING / INDUSTRY</span></div></article>
-        <article class="portfolio-card"><div class="portfolio-art art-three">CREATIVE<span> SPACE</span><small>YOUR STORY. YOUR IDENTITY.</small></div><div class="portfolio-info"><h3>Creative Portfolio Concept</h3><span>PERSONAL / CREATIVE</span></div></article>
+        <article class="portfolio-card">
+          <a href="https://sites.google.com/view/aisathi/home" target="_blank" rel="noopener noreferrer" aria-label="Open AI Saathi website">
+            <div class="portfolio-art art-one">AI <span>SAATHI</span><small>YOUR AI COMPANION</small></div>
+            <div class="portfolio-info"><h3>AI Saathi</h3><span>AI / DIGITAL PLATFORM</span><div class="portfolio-open">VISIT WEBSITE ↗</div></div>
+          </a>
+        </article>
+        <article class="portfolio-card">
+          <a href="https://sites.google.com/view/find-worker/Home" target="_blank" rel="noopener noreferrer" aria-label="Open Find Worker website">
+            <div class="portfolio-art art-two">FIND <span>WORKER</span><small>CONNECTING PEOPLE & SERVICES</small></div>
+            <div class="portfolio-info"><h3>Find Worker</h3><span>WORKER / SERVICE PLATFORM</span><div class="portfolio-open">VISIT WEBSITE ↗</div></div>
+          </a>
+        </article>
+        <article class="portfolio-card">
+          <a href="https://nexora-studio-14d.pages.dev/" target="_blank" rel="noopener noreferrer" aria-label="Open Nexora Studio website">
+            <div class="portfolio-art art-three">NEXORA <span>STUDIO</span><small>CREATIVE DIGITAL EXPERIENCE</small></div>
+            <div class="portfolio-info"><h3>Nexora Studio</h3><span>CREATIVE / DIGITAL STUDIO</span><div class="portfolio-open">VISIT WEBSITE ↗</div></div>
+          </a>
+        </article>
       </div>
-      <p class="portfolio-note">These are illustrative design concepts, not completed client projects.</p>
+      <p class="portfolio-note">Selected website showcases. Open any project to explore its live website.</p>
     </section>
 
     <section id="advantages" class="section content-section">
@@ -175,7 +382,11 @@
       </div>
       <div class="about-card">
         <div class="about-monogram">TD</div>
-        <div><h3>Independent Digital Developer</h3><p>THE_DEV is a personal digital development brand focused on creating modern websites for businesses, brands and individuals. The goal is simple: turn ideas into meaningful online experiences.</p><a href="#contact">Let's Work Together ↗</a></div>
+        <div>
+          <h3>Deven Dari | Founder & Developer</h3>
+          <p>THE_DEV is an independent digital development brand focused on creating modern, distinctive and responsive websites. From business websites to creative digital experiences, the vision is to turn ideas into meaningful online identities through thoughtful design and practical technology.</p>
+          <a href="#contact">Let's Work Together ↗</a>
+        </div>
       </div>
     </section>
 
@@ -187,8 +398,24 @@
       </div>
       <div class="contact-card">
         <form id="enquiry-form">
-          <div class="form-row"><label>Your Name<input id="client-name" required placeholder="Enter your name"></label><label>Business Name<input id="business-name" placeholder="Your company or brand"></label></div>
-          <div class="form-row"><label>WhatsApp Number<input id="client-phone" required type="tel" placeholder="Your contact number"></label><label>Website Type<select id="website-type" required><option value="">Select a service</option><option>Business Website</option><option>Portfolio Website</option><option>Landing Page</option><option>Industrial Website</option><option>Service Website</option><option>Custom Website</option></select></label></div>
+          <div class="form-row">
+            <label>Your Name<input id="client-name" required placeholder="Enter your name"></label>
+            <label>Business Name<input id="business-name" placeholder="Your company or brand"></label>
+          </div>
+          <div class="form-row">
+            <label>WhatsApp Number<input id="client-phone" required type="tel" placeholder="Your contact number"></label>
+            <label>Website Type
+              <select id="website-type" required>
+                <option value="">Select a service</option>
+                <option>Business Website</option>
+                <option>Portfolio Website</option>
+                <option>Landing Page</option>
+                <option>Industrial Website</option>
+                <option>Service Website</option>
+                <option>Custom Website</option>
+              </select>
+            </label>
+          </div>
           <label>Tell us about your project<textarea id="project-details" required rows="4" placeholder="Describe your website requirements..."></textarea></label>
           <button type="submit" class="primary-btn">Send Enquiry via WhatsApp ↗</button>
           <p class="form-note">Your details will be used to prepare your enquiry message.</p>
@@ -200,12 +427,89 @@
       <a href="#home" class="footer-brand">THE_<span>DEV</span></a>
       <p>Your Vision. Our Creation.</p>
       <small>© 2026 THE_DEV. All rights reserved.</small>
-      <a href="#home">BACK TO TOP ↑</a>
+      <a href="#home">BACK TO HOME ↑</a>
     </footer>
   </main>
+
+  <div class="custom-cursor" aria-hidden="true"></div>
+
+  <script>
+    // Show only the section selected by the visitor.
+    (() => {
+      const sections = [...document.querySelectorAll(".main-content > section.section")];
+      const links = [...document.querySelectorAll(".navigation .nav-link")];
+
+      function showSection(id, updateAddress = true) {
+        const target = sections.find(section => section.id === id);
+        if (!target) return;
+
+        sections.forEach(section => section.classList.toggle("is-active", section === target));
+        links.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + id));
+
+        if (updateAddress && location.hash !== "#" + id) {
+          history.pushState(null, "", "#" + id);
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Capture phase prevents the older smooth-scroll script from scrolling hidden sections.
+      document.addEventListener("click", event => {
+        const link = event.target.closest('a[href^="#"]');
+        if (!link) return;
+        const id = link.getAttribute("href").slice(1);
+        if (!sections.some(section => section.id === id)) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        showSection(id);
+      }, true);
+
+      window.addEventListener("popstate", () => {
+        showSection(location.hash.slice(1) || "home", false);
+      });
+
+      showSection(location.hash.slice(1) || "home", false);
+    })();
+
+    // Small colorful cursor and subtle trail on mouse-based desktop devices only.
+    (() => {
+      const finePointer = window.matchMedia("(hover:hover) and (pointer:fine) and (min-width:900px)");
+      if (!finePointer.matches) return;
+
+      const cursor = document.querySelector(".custom-cursor");
+      const glow = document.querySelector(".cursor-glow");
+      let lastTrail = 0;
+
+      window.addEventListener("mousemove", event => {
+        cursor.style.left = event.clientX + "px";
+        cursor.style.top = event.clientY + "px";
+        glow.style.left = event.clientX + "px";
+        glow.style.top = event.clientY + "px";
+
+        const now = performance.now();
+        if (now - lastTrail > 35) {
+          lastTrail = now;
+          const dot = document.createElement("span");
+          dot.className = "cursor-trail";
+          dot.style.left = event.clientX + "px";
+          dot.style.top = event.clientY + "px";
+          document.body.appendChild(dot);
+          setTimeout(() => dot.remove(), 600);
+        }
+      });
+
+      window.addEventListener("mouseout", event => {
+        if (!event.relatedTarget) {
+          cursor.style.opacity = "0";
+          glow.style.opacity = "0";
+        }
+      });
+      window.addEventListener("mouseover", () => {
+        cursor.style.opacity = "1";
+        glow.style.opacity = "1";
+      });
+    })();
+  </script>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-<!-- GitHub Pages deployment refresh -->
