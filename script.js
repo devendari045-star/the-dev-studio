@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Replace this placeholder with your WhatsApp number.
       // Use country code + number, without + or spaces.
-      const yourWhatsAppNumber = "91XXXXXXXXXX";
+      const yourWhatsAppNumber = "919265003748";
 
       if (!/^91\d{10}$/.test(yourWhatsAppNumber)) {
         alert("Website owner: Please add your WhatsApp number in script.js first.");
