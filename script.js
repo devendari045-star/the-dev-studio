@@ -1,5 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
+
   // 1. Animated background particles
   const background = document.getElementById("background-effects");
 
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let particles = [];
     let width = 0;
     let height = 0;
+    let animationFrame;
 
     function resizeCanvas() {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -54,63 +56,24 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fill();
       });
 
-      requestAnimationFrame(animateParticles);
+      animationFrame = requestAnimationFrame(animateParticles);
     }
 
     resizeCanvas();
     animateParticles();
+
     window.addEventListener("resize", resizeCanvas);
-  }
 
-  // 2. Subtle mouse-following cursor glow
-  const cursorGlow = document.querySelector(".cursor-glow");
-
-  if (cursorGlow && window.matchMedia("(pointer: fine)").matches) {
-    window.addEventListener("mousemove", event => {
-      cursorGlow.style.left = event.clientX + "px";
-      cursorGlow.style.top = event.clientY + "px";
-    });
-  }
-
-  // 3. Sidebar active section highlighting
-  const sections = document.querySelectorAll("main section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => {
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === "#" + entry.target.id
-            );
-          });
-        }
-      });
-    }, {
-      rootMargin: "-25% 0px -60% 0px"
-    });
-
-    sections.forEach(section => observer.observe(section));
-  }
-
-  // 4. Smooth navigation
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", event => {
-      const target = document.querySelector(link.getAttribute("href"));
-
-      if (target) {
-        event.preventDefault();
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationFrame);
+      } else {
+        animateParticles();
       }
     });
-  });
+  }
 
-  // 5. WhatsApp enquiry form
+  // 2. WhatsApp enquiry form
   const enquiryForm = document.getElementById("enquiry-form");
 
   if (enquiryForm) {
@@ -128,12 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Replace this placeholder with your WhatsApp number.
-      // Use country code + number, without + or spaces.
+      // THE_DEV WhatsApp contact number
       const yourWhatsAppNumber = "919265003748";
 
       if (!/^91\d{10}$/.test(yourWhatsAppNumber)) {
-        alert("Website owner: Please add your WhatsApp number in script.js first.");
+        alert("Please check the WhatsApp number in script.js.");
         return;
       }
 
@@ -159,9 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 6. Current year in footer
-  document.querySelectorAll(".footer small, .sidebar-bottom > small").forEach(el => {
-    el.textContent = el.textContent.replace(/©\s*\d{4}/, "© " + new Date().getFullYear());
+  // 3. Update footer year automatically
+  document.querySelectorAll(
+    ".footer small, .sidebar-bottom > small"
+  ).forEach(element => {
+    element.textContent = element.textContent.replace(
+      /©\s*\d{4}/,
+      "© " + new Date().getFullYear()
+    );
   });
-});
 
+});
